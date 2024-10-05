@@ -1,0 +1,397 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Share+Tech+Mono&family=VT323&display=swap');
+
+:root {
+  --near-black: #0A0A0A;
+  --soft-white: #FAF9EC;  /* Updated to a lighter, creamier white */
+  --phosphor-green: #33FF33;
+  --amber: #FFBF00;
+  --vivid-cobalt: #1239F6;
+  --teal-cyan: #40E0D0;
+  --dusty-red: #C43737;
+  --warm-purple: #9370DB;
+  --electric-blue: #66B2FF;
+  --lightning-yellow: #FFFF66;
+  --retro-green: #7FFF00;
+  --neon-pink: #FF9ED2;
+}
+
+@layer base {
+  :root {
+    --background: var(--near-black);
+    --foreground: var(--soft-white);
+    --card: var(--near-black);
+    --card-foreground: var(--soft-white);
+    --popover: var(--near-black);
+    --popover-foreground: var(--soft-white);
+    --primary: var(--phosphor-green);
+    --primary-foreground: var(--near-black);
+    --secondary: var(--amber);
+    --secondary-foreground: var(--near-black);
+    --muted: color-mix(in srgb, var(--near-black) 80%, var(--soft-white) 20%);
+    --muted-foreground: var(--soft-white);
+    --accent: var(--vivid-cobalt);
+    --accent-foreground: var(--soft-white);
+    --destructive: var(--dusty-red);
+    --destructive-foreground: var(--soft-white);
+    --border: var(--teal-cyan);
+    --input: var(--teal-cyan);
+    --ring: var(--electric-blue);
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.react-flow__node {
+  @apply border-2 border-teal-cyan rounded-md overflow-hidden;
+}
+
+.react-flow__handle {
+  @apply bg-electric-blue border-2 border-lightning-yellow;
+}
+
+.react-flow__edge-path {
+  @apply stroke-retro-green stroke-2;
+}
+
+.react-flow__minimap {
+  @apply bg-near-black border-2 border-teal-cyan rounded-md overflow-hidden;
+}
+
+.react-flow__controls {
+  @apply bg-near-black border-2 border-teal-cyan rounded-md overflow-hidden;
+}
+
+.react-flow__controls-button {
+  @apply bg-near-black text-phosphor-green border-teal-cyan hover:bg-vivid-cobalt hover:text-lightning-yellow;
+}
+
+.agency-mind-logo {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: linear-gradient(to right, var(--electric-blue), var(--neon-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  text-shadow: 0 0 10px rgba(102, 178, 255, 0.5);
+}
+
+.workflow-title {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--phosphor-green);
+  background-color: transparent;
+  border: none;
+  outline: none;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.workflow-title:focus {
+  text-shadow: 0 0 8px rgba(51, 255, 51, 0.7);
+}
+
+.filename-text {
+  font-family: 'VT323', monospace;
+  font-size: 0.875rem;
+  color: var(--amber);
+  letter-spacing: 0.02em;
+  margin-top: 0.25rem;
+}
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--near-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--teal-cyan);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--electric-blue);
+}
+
+/* Glowing effect for buttons and interactive elements */
+.glow-effect {
+  box-shadow: 0 0 5px var(--phosphor-green), 0 0 10px var(--phosphor-green), 0 0 15px var(--phosphor-green);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.glow-effect:hover {
+  box-shadow: 0 0 10px var(--electric-blue), 0 0 20px var(--electric-blue), 0 0 30px var(--electric-blue);
+}
+
+/* Retro terminal-like text effect */
+.terminal-text {
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--phosphor-green);
+  text-shadow: 0 0 5px var(--phosphor-green);
+}
+
+/* CRT screen effect */
+.crt-effect {
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+}
+
+/* Glitch effect for text */
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.glitch-text {
+  position: relative;
+  animation: glitch 0.5s infinite;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-text::before {
+  left: 2px;
+  text-shadow: -2px 0 var(--neon-pink);
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch 5s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+  left: -2px;
+  text-shadow: -2px 0 var(--electric-blue);
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch 5s infinite linear alternate-reverse;
+}
+
+/* Vaporwave-inspired gradient backgrounds */
+.vaporwave-gradient {
+  background: linear-gradient(45deg, var(--neon-pink), var(--electric-blue), var(--teal-cyan));
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Wireframe effect for borders */
+.wireframe-border {
+  border: 2px solid var(--phosphor-green);
+  box-shadow: 0 0 0 2px var(--near-black), 0 0 0 4px var(--phosphor-green);
+}
+
+/* Hologram-like effect */
+.hologram-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.hologram-effect::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--electric-blue),
+    var(--teal-cyan),
+    transparent
+  );
+  animation: hologram-rotate 6s linear infinite;
+  opacity: 0.3;
+}
+
+@keyframes hologram-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Low poly background effect */
+.low-poly-bg {
+  background-image: linear-gradient(120deg, var(--near-black) 0%, var(--vivid-cobalt) 100%);
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* Pixel art-inspired borders */
+.pixel-border {
+  border-style: solid;
+  border-width: 4px;
+  border-image: url("data:image/svg+xml,%3Csvg width='3' height='3' viewBox='0 0 3 3' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%2333FF33' d='M0 0h1v1H0zM2 0h1v1H2zM1 1h1v1H1zM0 2h1v1H0zM2 2h1v1H2z'/%3E%3C/svg%3E")
+    33.33% / 10px 10px stretch;
+}
+
+/* VHS-like noise effect */
+.vhs-noise {
+  position: relative;
+  overflow: hidden;
+}
+
+.vhs-noise::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.1'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.05;
+}
+
+/* ASCII art-inspired text */
+@font-face {
+  font-family: 'PxPlus IBM VGA8';
+  src: url('/fonts/PxPlus_IBM_VGA8.ttf') format('truetype');
+}
+
+.ascii-text {
+  font-family: 'PxPlus IBM VGA8', monospace;
+  font-size: 16px;
+  line-height: 1;
+  white-space: pre;
+}
+
+/* Synthwave sun effect */
+.synthwave-sun {
+  position: relative;
+  overflow: hidden;
+}
+
+.synthwave-sun::before {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, var(--neon-pink) 0%, var(--vivid-cobalt) 70%, transparent 70%);
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.5;
+}
+
+/* Digital rain effect (Matrix-like) */
+@keyframes digital-rain {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.digital-rain {
+  position: relative;
+  overflow: hidden;
+}
+
+.digital-rain::before {
+  content: '01010101010101010101';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--phosphor-green);
+  opacity: 0.1;
+  animation: digital-rain 20s linear infinite;
+  pointer-events: none;
+}
+
+/* Responsive typography */
+@media (max-width: 640px) {
+  .agency-mind-logo {
+    font-size: 1.5rem;
+  }
+
+  .workflow-title {
+    font-size: 1rem;
+  }
+
+  .filename-text {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .agency-mind-logo {
+    font-size: 1.25rem;
+  }
+
+  .workflow-title {
+    font-size: 0.875rem;
+  }
+
+  .filename-text {
+    font-size: 0.6875rem;
+  }
+}
