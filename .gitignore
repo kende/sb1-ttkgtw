@@ -152,6 +152,6 @@ tmp/
 temp/
 
 # Bolt-specific files
-.bolt/ignore
-.bolt/prompt
-.bolt/config.json
+# .bolt/ignore
+# .bolt/prompt
+# .bolt/config.json
