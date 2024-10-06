@@ -40,6 +40,15 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
 const nodeTypes = {
   imageNode: ImageNode,
@@ -66,6 +75,7 @@ const NodeEditor: React.FC = () => {
   const [edges, setEdges, onEdgesChange] = useEdgesState([])
   const [workflowName, setWorkflowName] = React.useState('Untitled Workflow')
   const [loadedFileName, setLoadedFileName] = React.useState('')
+  const [isDialogOpen, setIsDialogOpen] = React.useState(false)
   const reactFlowWrapper = React.useRef<HTMLDivElement>(null)
   const fileInputRef = React.useRef<HTMLInputElement>(null)
   const { project } = useReactFlow()
@@ -145,7 +155,6 @@ const NodeEditor: React.FC = () => {
     setNodes((nds) => {
       const updatedNodes = applyNodeChanges(changes, nds)
       
-      // Check for collisions after node movement
       const movedNodes = changes.filter((change) => change.type === 'position' && change.dragging)
       if (movedNodes.length > 0) {
         return updatedNodes.map((node) => {
@@ -163,6 +172,14 @@ const NodeEditor: React.FC = () => {
   }
 
   const saveWorkflow = () => {
+    if (workflowName === 'Untitled Workflow') {
+      setIsDialogOpen(true)
+    } else {
+      performSave()
+    }
+  }
+
+  const performSave = () => {
     const workflow = { 
       nodes: nodes.map(node => ({
         ...node,
@@ -408,6 +425,28 @@ const NodeEditor: React.FC = () => {
           </div>
         </TooltipProvider>
       </div>
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Name Your Workflow</DialogTitle>
+            <DialogDescription>
+              Please enter a name for your workflow before saving.
+            </DialogDescription>
+          </DialogHeader>
+          <Input
+            value={workflowName}
+            onChange={(e) => setWorkflowName(e.target.value)}
+            placeholder="Enter workflow name"
+          />
+          <DialogFooter>
+            <Button onClick={() => setIsDialogOpen(false)}>Cancel</Button>
+            <Button onClick={() => {
+              setIsDialogOpen(false)
+              performSave()
+            }}>Save</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }
