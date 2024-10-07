@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "description": "A sophisticated node-based editor for creating visual workflows and data pipelines. Built with Next.js, React Flow, and Tailwind CSS, this application offers a user-friendly interface for designing complex processes through an intuitive drag-and-drop experience.",
+  "license": "SEE LICENSE IN LICENSE.md",
   "scripts": {
     "dev": "next dev",
     "prebuild": "npm run lint",

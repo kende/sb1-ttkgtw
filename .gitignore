@@ -155,3 +155,6 @@ temp/
 # .bolt/ignore
 # .bolt/prompt
 # .bolt/config.json
+
+# NPM specific files
+package-lock.json
